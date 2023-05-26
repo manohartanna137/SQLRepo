@@ -21,5 +21,11 @@
 -  Using <> for getting all the city names except paris.
 -  using wheere,AND fgetting the for getting the city records with commission>0.14 and city is      paris.
 -  Using order by for getting the records of the commission in ascending order. 
+### Aggregate functions and Top clause ###
+- Restored the database from AdventureworksDW2019.
+- sorted the Lastname from the Dimcustomer table.
+- Using the TOP clause to get the top 20 products from dimproduct table.
+- using top and percent to get the 50 percentage of customers from DimCustomer table.
+- Using the max and min functions to get the maximum and minimum yearly income from the           DimCustomer.
 
 
