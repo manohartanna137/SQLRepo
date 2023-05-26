@@ -1,0 +1,43 @@
+# getting the records of the table containing vi in tis name
+select distinct EmailAddress
+from DimEmployee
+where EmailAddress LIKE '%vi%';
+
+# getting the records of EnglishProductName starting with a and ending with b
+select EnglishProductName
+from DimProduct
+WHERE EnglishProductName LIKE 'b%e';
+
+# getting records for the letter starting with r in second position
+select EnglishProductName
+from DimProduct
+where EnglishProductName LIKE '_r%';
+
+# using IN operator to get the records
+select FirstName, DepartmentName, Title
+from DimEmployee
+where Title IN ('Accountant', 'Chief Financial Officer');
+
+# using concatination
+select FirstName + ' ' + LastName as "Employee Full Name"
+from DimEmployee;
+
+# getting minimum unit price
+select MIN(UnitPrice) as MinUnitPrice
+from FactInternetSales;
+
+#calculating sum of prices
+select sum(SalesAmount) as sum_salesamount
+from FactInternetSales;
+
+# calculating average tax amount
+select avg(Taxamt)
+from  FactInternetSales;
+
+# geting the records of the people with birth rate 1980-01-01' AND BirthDate <= '1985-12-31'
+select FirstName, BirthDate
+from DimCustomer
+where BirthDate >= '1980-01-01' AND BirthDate <= '1985-12-31'
+order by BirthDate;
+
+
