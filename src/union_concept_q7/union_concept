@@ -1,0 +1,62 @@
+CREATE TABLE Employee (
+  EmployeeID INT PRIMARY KEY,
+  EName VARCHAR(50),
+  DeptID INT,
+  Salary DECIMAL(10, 2)
+);
+
+INSERT INTO Employee (EmployeeID, EName, DeptID, Salary)
+VALUES
+  (1001, 'John', 2, 4000),
+  (1002, 'Anna', 1, 3500),
+  (1003, 'James', 1, 2500),
+  (1004, 'David', 2, 5000),
+  (1005, 'Mark', 2, 3000),
+  (1006, 'Steve', 3, 4500),
+  (1007, 'Alice', 3, 3500);
+
+-- SQL query to group the DeptID column and Salary need to average salary department-wise from above table.(Output columns: DeptID, Avg.Salary)
+SELECT DeptID, AVG(Salary) AS AvgSalary
+FROM Employee
+GROUP BY DeptID;
+
+-- In continuation to above apply Having condition on Average Salary > 3000
+SELECT DeptID, AVG(Salary) AS AvgSalary
+FROM Employee
+GROUP BY DeptID
+HAVING AVG(Salary)>3000;
+
+--Create dept. table with mentioned data
+CREATE TABLE Department (
+  DeptID INT ,
+  DName VARCHAR(50),
+  DLocation VARCHAR(50)
+);
+
+INSERT INTO Department(DeptID,DName,DLocation)
+VALUES (1,'HR','Mumbai'),
+(2,'IT','NewDelhi'),
+(3,'Finance','Mumbai');
+
+--Apply Join on Employee and Department tables using the common column DeptID
+SELECT E.EmployeeID, E.EName, E.Salary, D.DName, D.DLocation
+FROM Employee E
+JOIN Department D ON E.DeptID = D.DeptID;
+
+--SQL query to display Dname, Avg. salary of Each dept. using Joins and Group by Clauses
+SELECT D.DName, AVG(E.Salary) AS AvgSalary
+FROM Department D
+JOIN Employee E ON D.DeptID = E.DeptID
+GROUP BY D.DName;
+
+USE AdventureWorksDW2019;
+
+SELECT FirstName, BirthDate
+FROM DimCustomer
+WHERE BirthDate BETWEEN '1985-01-01' AND '1985-12-01'
+UNION
+SELECT FirstName, BirthDate
+FROM DimEmployee
+WHERE BirthDate BETWEEN '1985-01-01' AND '1985-12-01';
+
+

@@ -1,0 +1,62 @@
+drop table Employee_details
+
+-- Create Employee_details table
+CREATE TABLE Employee_details (
+  EmployeeID INT NOT NULL PRIMARY KEY,
+  Firstname VARCHAR(30),
+  LastName VARCHAR(30),
+  Salary INT,
+  Department VARCHAR(30),
+  Gender VARCHAR(30)
+);
+
+-- Insert data into Employee_details table
+INSERT INTO Employee_details (EmployeeID, Firstname, LastName, Salary, Department, Gender)
+VALUES
+  (1, 'Vikas', 'Ahlawat', 600000, 'IT', 'Male'),
+  (2, 'Nikita', 'Jain', 530000, 'HR', 'Female'),
+  (3, 'Ashish', 'Kumar', 10000000, 'IT', 'Male'),
+  (4, 'Nikhil', 'Sharma', 480000, 'HR', 'Male'),
+  (5, 'Anish', 'Kadian', 500000, 'Payroll', 'Male');
+
+-- Create ProjectDetail table
+CREATE TABLE ProjectDetail (
+  ProjectDetailID INT,
+  EmployeeID INT NOT NULL,
+  ProjectName VARCHAR(50)
+);
+
+-- Insert data into ProjectDetail table
+INSERT INTO ProjectDetail (ProjectDetailID, EmployeeID, ProjectName)
+VALUES
+  (1, 1, 'Task track'),
+  (2, 1, 'CLP'),
+  (3, 1, 'Survey Management'),
+  (4, 2, 'HR Management'),
+  (5, 3, 'Task Track'),
+  (6, 3, 'GRS'),
+  (7, 3, 'DDS'),
+  (8, 4, 'HR Management'),
+  (9, 6, 'GL Management');
+
+--Get employee name, project name order by firstname from "EmployeeDetail" and "ProjectDetail" for those employee which have assigned project already.
+SELECT E.Firstname, P.ProjectName
+FROM Employee_details E
+JOIN ProjectDetail P ON E.EmployeeID = P.EmployeeID
+ORDER BY E.Firstname;
+
+--Get employee name, project name order by firstname from "EmployeeDetail" and "ProjectDetail" for all employee even they have not assigned project.
+SELECT E. Firstname,P.ProjectName
+FROM Employee_details E
+LEFT JOIN ProjectDetail P ON E.EmployeeID = P.EmployeeID;
+
+--Get all project name even they have not matching any employeeid, in left table, order by firstname from "EmployeeDetail" and "ProjectDetail".
+SELECT P.ProjectName,E.Firstname
+FROM Employee_details E
+RIGHT JOIN ProjectDetail P ON E.EmployeeID = P.EmployeeID
+ORDER BY E.Firstname;
+
+--Get complete record(employeename, project name) from both tables([EmployeeDetail],[ProjectDetail]), if no match found in any table then show NULL.
+SELECT *
+FROM Employee_details E
+FULL JOIN ProjectDetail P ON E.EmployeeID = P.EmployeeID;
