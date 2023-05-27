@@ -12,28 +12,28 @@ region_id varchar(30) UNIQUE NOT NULL
 # renaming the table from locations to locations_new
 EXEC sp_rename  'Locations' ,'Locations_new';
 
-# getting all the records from the table
+-- getting all the records from the table
 select * from Locations_new;
 
-# adding new column named int
+-- adding new column named int
 alter table Locations_new add ID INT;
 
-# checking for the details of the column
+-- checking for the details of the column
 EXEC sp_help 'Locations_new';
 
-#getting the records from the table
+-- getting the records from the table
 select * from Locations_new;
 
-# dropping a column from the table
+-- dropping a column from the table
 alter table Locations_new drop COLUMN ID;
 
-# checking for the deleted column whether it is dropped or not
+-- checking for the deleted column whether it is dropped or not
 select * from Locations_new;
 
-# adding column to the table
+-- adding column to the table
 alter table Locations_new add state_province varchar(50);
 
-# renaming the column
+-- renaming the column
 exec sp_rename 'Locations_new.region_id','id_Region','column';
 
 
