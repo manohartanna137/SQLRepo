@@ -1,15 +1,15 @@
 use School # database name
 
-# create table with not null constraint
+-- create table with not null constraint
 create table job_details
 (agent_code char(6) NOT NULL,
 agent_name char(25) NOT NULL,
 working_area char(25) NOT NULL);
 
-# seeing the details of the table
+-- seeing the details of the table
 EXEC sp_help job_details;
 
-# create table with not null and unique constraint
+-- create table with not null and unique constraint
 create table order_details
 (ord_num decimal(6) NOT NULL UNIQUE,
  ord_amount decimal(12,2),
@@ -21,7 +21,7 @@ create table order_details
 
  EXEC sp_help order_details;
 
-# create table with not null  and columns with two constraint
+-- create table with not null  and columns with two constraint
 
 create table job_details_new
 (agent_code char(6) NOT NULL,
@@ -31,7 +31,7 @@ CONSTRAINT UC_UniqueColumns UNIQUE (agent_code, agent_name));
 
  EXEC sp_help job_details_new;
 
-# create table with notnull and unique
+-- create table with notnull and unique
 create table order_
 (cust_code char(6) NOT NULL UNIQUE,
 cust_name char(25) NOT NULL,
@@ -41,7 +41,7 @@ agent_code char(6) NOT NULL UNIQUE);
 
 EXEC sp_help job_details_new;
 
-# create table with check constraint
+-- create table with check constraint
 create table agent
 (agent_code char(6) NOT NULL,
 agent_name char(25) NOT NULL,
@@ -50,14 +50,14 @@ commission integer check(commission<1));
 
 EXEC sp_help agent;
 
-# applying check constraint on two columns using AND
+-- applying check constraint on two columns using AND
 ALTER TABLE agent
 ADD CONSTRAINT CHK_PersonAge CHECK (commission<1 AND working_area IN ('London', 'brisban','Chennai','mumbai'));
 
 select * from agent;
 EXEC sp_help agent;
 
-## creating table with check constraint and using AND OR ooperator
+-- creating table with check constraint and using AND OR ooperator
 create table agents_l
 (agent_code char(6) NOT NULL,
 agent_name char(25) NOT NULL,
